@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- 프론트 먼저 실행 후 백엔드로 데이터 전달 테스트
-		 JavaScript -> JSP
+	<!--isInit 플래그가 true일 때, <script>에서 자동으로 폼 값을 설정하고 submit() 함.
+		폼이 다시 서버에 요청을 보내면서 flag=true와 사용자 정보 전달.
+		서버는 flag 값을 보고 더 이상 자동 실행하지 않도록 isInit을 false로 바꿈.
+		그 후 전달된 사용자 정보가 브라우저에 출력됨.
 	 -->
 	<%!
 		boolean isInit=true;
