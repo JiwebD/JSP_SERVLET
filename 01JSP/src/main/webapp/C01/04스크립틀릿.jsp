@@ -1,4 +1,3 @@
- <%-- 지시자 : <%@ ... %> JSP 페이지 전체에 적용되는 설정 (page, include, taglib)  --%>   
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
