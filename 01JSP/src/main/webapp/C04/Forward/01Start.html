@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	Forward방식 페이지 요청 : Request내용은 유지한채 또다른 Page경로로 이동
+						  클라이언트의 URL경로는 최초요청시의 URL로 유지가 된다
+						  Request객체의 내용은 최초요청내용이 유지된다(Forward 되는 동안만)
+	
+	하나의 요청-응답 주기를 가진다.
+	
+	클라이언트가 최초 접속																		서버 : Tomcat
+	
+	http://localhost:8090/01JSP/Co4/Forward/01start.html 	  ->	HTTP REQUEST(요청발생) 		->	  		ㄱ
+																								정적 파일/01start.html 전달	(정적파일이므로 request객체생성x) 
+																											ㅣ
+	http://localhost:8090/01JSP/Co4/Forward/01start.html	  <- 	HTTP RESPONESE(화면 응답) <-			   ㅡ 
+					사용자가 form 제출
+							ㅣ	
+							ㄴ								  ->HTTP REQUEST(/02Page.jsp 요청)->	REquest객체생성 - 	/02Page.jsp	(요청경로)																										 	
+																														ㅣ																									
+							ㅡ								  <- 	HTTP RESPONESE(화면 응답) <-	Response객체생성	  	  <ㅡ 
+																										↓	forward	(내부이동)							  
+											  														/03Page.jsp
+																										↓	forward	(내부이동)								  
+																									/04Result.jsp
+	브라우저 주소창에는 여전히 02Page.jsp주소 지만 출력결과는 04Result.jsp 이다.											ㅣ															ㅣ
+	http://localhost:8090/01JSP/Co4/Forward/02Page.jsp			<-	HTTP RESPONESE			<-			  <ㅡ
+	
+	
+	※ 하나의 요청-응답 주기를 가진다.
+
+[클라이언트]	 --request/responese-->		[서버 : Tomcat]
+
+1. 최초 접속
+http://localhost:8090/01JSP/Co4/Forward/01start.html
+ → HTTP REQUEST (요청 발생)
+ → 정적 파일 응답 처리 (Request 객체 생성 안 됨)
+ ← HTTP RESPONSE (form 화면 응답)
+
+2. form 제출
+ → HTTP REQUEST (/02Page.jsp 요청)
+ → Request 객체 생성됨 (/02Page.jsp 기준)
+ → Response 객체 생성됨
+   ↓ forward (서버 내부 이동)
+   → /03Page.jsp
+   ↓ forward (서버 내부 이동)
+   → /04Result.jsp
+ ← HTTP RESPONSE (출력은 04Result.jsp의 결과)
+
+[브라우저 상태]
+주소창: http://localhost:8090/01JSP/Co4/Forward/02Page.jsp
+출력된 내용: /04Result.jsp에서 생성된 결과
+	
+-->
+	<form action="02Page.jsp">
+		<input type="text" name="username" />
+		<input type="text" name="password" />
+		<button>전송</button>
+	</form>
+
+</body>
+</html>

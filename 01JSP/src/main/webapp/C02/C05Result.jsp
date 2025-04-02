@@ -16,21 +16,32 @@
 <title>Insert title here</title>
 </head>
 <style>
-li{list-style: none;}
-a{text-decoration:none;}
-.wrapper>nav{<%=style%>}
+	ul{
+		list-style:none;
+		padding:0;
+		margin:0;
+	}
+	a{text-decoration:none;}
+		header{
+		width:100%;
+	}
+.wrapper>header>nav>ul{<%=style%>}
 </style>
 <body>
 	
 
 	<div class="wrapper">
+	<header>
 		<div class="top-header"></div>
 		<nav>
+			<ul>
 	    	<li><a href=""><%=col1 %></a></li>
       	  	<li><a href=""><%=col2 %></a></li>
       	  	<li><a href=""><%=col3 %></a></li>
       	  	<li><a href=""><%=col4 %></a></li>
+			</ul>
 		</nav>
+	</header>
 		<main>
 			<section></section>
 		</main>
