@@ -1,0 +1,24 @@
+도서관리 시스템
+서비스(인증)
+도서서비스
+대여서비스
+예약서비스
+
+액터(관리자, 도서사서, 회원)
+
+Presentation Layer (보여지는 영역)		Business Layer(사용자요구사항)		Persistance Layer(db영역)
+View		Controller		
+TUIMain		FC->UserController		공통Domain		
+						Model	- SERVICE		/DAO/DTO
+							UserServiceImpl -> UserDaoImpl -> DB
+					관리자Domain		
+						Model	- SERVICE		/DAO/DTO
+					사서Domain		
+						Model	- SERVICE		/DAO/DTO
+					회원Domain		
+						Model	- SERVICE		/DAO/DTO
+
+
+
+TUIMain	-> FC->UserController -> UserServiceImpl -> UserDaoImpl -> DB
+DB -> UserDaoImpl -> UserServiceImpl -> >UserController -> FC -> TUIMain	
