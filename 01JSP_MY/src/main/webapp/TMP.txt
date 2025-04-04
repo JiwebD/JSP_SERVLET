@@ -1,0 +1,30 @@
+Servlet file(JAVA)
+
+선언문 <%! %>	서블릿의 속성/기능
+스크립틀릿 <% %>	서블릿의 service 함수 안
+표현식 <% %>	service함수 안 -> view out.print()
+
+지시자 <%@ %>	page import=""
+		include Layout
+
+Forward/Redirect
+		forward : 서버내 다른페이지 이동
+			request	/ response 유지
+		rdeirect: 다른 경로로 이동 유도
+			new request
+
+내장객체	pageContext / request,response/session/
+	${pageContext.request.contextPath} - 외우기
+	application
+
+세션
+쿠키
+
+공통점 : 정보저장(임시)
+서버에 저장 : 세션(서버가 종료되면 제거)
+브라우저에 저장 : 쿠키(서버가 종료되더라도 유지 .maxAge(지정해준시간동안) )
+
+EL  :  표현식을 대체
+JSTL
+
+DB * * * * *
