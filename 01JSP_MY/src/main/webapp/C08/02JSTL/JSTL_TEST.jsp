@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<!-- 구글에 maven repository 검색 사이트 들어가기 > jstl서치 > 02JSTL클릭 > 1.2클릭 > jar다운로드 > 프로젝트에 WEB_INF/lib경로 안에 다운 받은 jar파일 넣기 -->
 
 <!-- 변수 선언  -->
 <c:set var="num" value="123" />

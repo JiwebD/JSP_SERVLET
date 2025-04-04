@@ -46,6 +46,18 @@ public class DBUtils {
 		pstmt.close();
 		return result;
 	}
+	
+	public int updateUser(UserDto userDto) throws Exception{
+		pstmt = conn.prepareStatement("update tbl_user set password=?,role=? where userid=?");
+		pstmt.setString(3, userDto.getUserid());
+		pstmt.setString(1, userDto.getPassword());
+		pstmt.setString(2, userDto.getRole());
+		int result = pstmt.executeUpdate();
+		
+		conn.commit();
+		pstmt.close();
+		return result;
+	}
 	public List<UserDto> selectAllUser() throws Exception{
 		pstmt = conn.prepareStatement("select * from tbl_user");
 		rs = pstmt.executeQuery();
@@ -68,6 +80,8 @@ public class DBUtils {
 		
 	}
 	
+
+	
 	public UserDto selectOneUser(String userid) throws Exception{
 		pstmt = conn.prepareStatement("select * from tbl_user where userid=?");
 		pstmt.setString(1, userid);
@@ -85,5 +99,6 @@ public class DBUtils {
 		pstmt.close();
 		return userDto;
 	}
+
 
 }
