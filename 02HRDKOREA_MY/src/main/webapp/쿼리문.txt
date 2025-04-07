@@ -1,0 +1,78 @@
+-- 기존 테이블 삭제
+drop table TBL_VOTE_202005;
+drop table TBL_MEMBER_202005;
+drop table TBL_PARTY_202005;
+
+-- 투표이력테이블 명세서 만들기
+CREATE TABLE TBL_VOTE_202005( -- 투표이력테이블
+v_jumin CHAR(13) NOT NULL PRIMARY KEY, -- 주민번호
+V_name VARCHAR2(20) , -- 성명
+m_no char(1) , -- 후보 번호
+v_time CHAR(4), -- 투표 시간
+v_area CHAR(20), -- 투표 장소
+v_confirm CHAR(1) -- 유권자 확인
+);
+
+-- 후보자 테이블 만들기
+CREATE TABLE TBL_MEMBER_202005( -- 후보자 테이블
+m_no CHAR(1) NOT NULL PRIMARY KEY, -- 후보번호
+m_name VARCHAR2(20), -- 성명
+p_code CHAR(2), --소속정당
+p_school CHAR(1), --최종학력
+m_jumin CHAR(13), --주민번호
+m_city VARCHAR2(20) --지역구
+);
+
+-- 정당 테이블 만들기
+CREATE TABLE TBL_PARTY_202005( -- 정당 테이블
+p_code CHAR(2) NOT NULL PRIMARY KEY, -- 정당 코드
+p_name VARCHAR2(20), -- 명칭
+p_indicate DATE, --등록연월일
+p_reader VARCHAR2(20), --대표자
+p_tel1 CHAR(3), --전화번호1
+p_tel2 CHAR(4), --전화번호2
+p_tel3 CHAR(4) --전화번호3
+);
+
+-- 투표이력테이블 값삽입
+IINSERT INTO TBL_VOTE_202005 VALUES ('99010110001', '김유권', 1, '0930', '제1투표장', 'N');
+INSERT INTO TBL_VOTE_202005 VALUES ('89010120002', '이유권', 2, '0930', '제1투표장', 'N');
+INSERT INTO TBL_VOTE_202005 VALUES ('69010110003', '박유권', 3, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('59010120004', '홍유권', 4, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('79010110005', '조유권', 5, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('89010120006', '최유권', 1, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('59010110007', '지유권', 1, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('49010120008', '장유권', 3, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110009', '정유권', 2, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('89010120010', '강유권', 4, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110011', '신유권', 5, '0930', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('79010120012', '오유권', 1, '1330', '제1투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('69010110013', '현유권', 4, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('89010120014', '왕유권', 2, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110015', '유유권', 3, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('79010110016', '한유권', 2, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('89010110017', '문유권', 4, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110018', '양유권', 2, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110019', '구유권', 4, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('79010110020', '황유권', 5, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110021', '배유권', 3, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('79010110022', '진유권', 3, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('99010110023', '고유권', 1, '1330', '제2투표장', 'Y');
+INSERT INTO TBL_VOTE_202005 VALUES ('59010110024', '권유권', 3, '1330', '제2투표장', 'Y');
+
+
+-- 후보자 테이블 값 삽입
+INSERT INTO TBL_MEMBER_202005 VALUES (1, '김후보', 'P1', 1, '6603011999991', '수선화동');
+INSERT INTO TBL_MEMBER_202005 VALUES (2, '이후보', 'P2', 3, '5503011999992', '민들레동');
+INSERT INTO TBL_MEMBER_202005 VALUES (3, '박후보', 'P3', 2, '7703011999993', '나팔꽃동');
+INSERT INTO TBL_MEMBER_202005 VALUES (4, '조후보', 'P4', 2, '8803011999994', '진달래동');
+INSERT INTO TBL_MEMBER_202005 VALUES (5, '최후보', 'P5', 3, '9903011999995', '개나리동');
+
+-- 정당 테이블 값 삽입
+INSERT INTO TBL_PARTY_202005 VALUES ('P1', 'A정당', TO_DATE('2010-01-01', 'YYYY-MM-DD'), '위대표', '02', '1111', '0001');
+INSERT INTO TBL_PARTY_202005 VALUES ('P2', 'B정당', TO_DATE('2010-02-01', 'YYYY-MM-DD'), '명대표', '02', '1111', '0002');
+INSERT INTO TBL_PARTY_202005 VALUES ('P3', 'C정당', TO_DATE('2010-03-01', 'YYYY-MM-DD'), '기대표', '02', '1111', '0003');
+INSERT INTO TBL_PARTY_202005 VALUES ('P4', 'D정당', TO_DATE('2010-04-01', 'YYYY-MM-DD'), '옥대표', '02', '1111', '0004');
+INSERT INTO TBL_PARTY_202005 VALUES ('P5', 'E정당', TO_DATE('2010-05-01', 'YYYY-MM-DD'), '임대표', '02', '1111', '0005');
+
+commit;
