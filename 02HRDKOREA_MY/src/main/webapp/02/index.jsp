@@ -23,22 +23,22 @@
 		font-weight:400;
 		
 	}
-/* 	.wrapper>main>form{
+ 	.wrapper>main>form{
 		border:1px solid;
-		border-collapse:collapse;
 		width:500px;
 		min-height:250px;
 		margin: 0 auto;
 		padding : 0;
-	} */
-/* 	.wrapper>main>form>div{
+	}
+ 	.wrapper>main>form>div{
 		border-bottom:1px solid;
-		text-align : center;
 		padding: 0;
-	} */
+	}
 	.wrapper>main>form>div>label{
-		border: 1px solid;
-		padding : 5px;
+		display:block;
+		width:100px;
+		border-right: 1px solid;
+
 		
 	}
 	
