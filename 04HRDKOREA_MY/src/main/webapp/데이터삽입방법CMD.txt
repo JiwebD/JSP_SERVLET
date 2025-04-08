@@ -1,0 +1,17 @@
+cmd로 테이블 인서트하는법
+insert 문 .txt파일 > 다른이름으로 저장 인코딩형식 ANSI로 저장
+파일 경로의 폴더에서 cmd열기
+
+sqlplus system/1234	enter
+ 
+create table table이름 (
+컬럼명 형태(길이) not null여부 primary key,
+"	"	"	",
+"	"	"	",
+"	"	"	",
+"	"	"	"
+);	enter
+
+@insert문.txt파일		enter
+
+commit		enter
