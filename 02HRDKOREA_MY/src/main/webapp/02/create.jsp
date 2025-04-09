@@ -29,19 +29,19 @@
 <% VoteDto voteDto2 = new VoteDto(); %>
   == 
 <jsp:useBean id="voteDto2" class="Utils.VoteDto" scope="request" />
+
+voteDto2라는 이름으로 Utils.VoteDto 클래스의 객체 성성 이미 존재하면 재사
+scope="request" : request 범위에서만 유효
+
+클라이언트가 보낸 request 파라미터 중 이름이 
+voteDto2 객체의 멤버 변수 이름과 같은 것이 있으면 자동으로 그 값을 set
+ 	  
+name="xxx" 형식의 파라미터가 있으면
+Utils.VoteDto 안에 setXxx()라는 메서드가 있으면
+자동으로 setXxx(파라미터값) 호출	  
  --%>
 <jsp:useBean id="voteDto2" class="Utils.VoteDto" scope="request" />
- <!-- voteDto2라는 이름으로 Utils.VoteDto 클래스의 객체 성성 이미 존재하면 재사
-	  scope="request" : request 범위에서만 유효
- -->
 <jsp:setProperty name="voteDto2" property="*" />
- <!-- 클라이언트가 보낸 request 파라미터 중 이름이 
- 	  voteDto2 객체의 멤버 변수 이름과 같은 것이 있으면 자동으로 그 값을 set
- 	  
-	  name="xxx" 형식의 파라미터가 있으면
-	  Utils.VoteDto 안에 setXxx()라는 메서드가 있으면
-	  자동으로 setXxx(파라미터값) 호출	  
- -->
 
 <%
 	System.out.println("voteDto2 : " + voteDto2);

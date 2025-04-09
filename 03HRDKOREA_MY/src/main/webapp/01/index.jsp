@@ -15,7 +15,7 @@
 	body{padding:0;margin : 0;}
 	ul{list-style:none;margin:0;padding:0;}
 	a{text-decoration:none; color:black;}
-	.wrapper{}
+	.wrapper{background-color: lightgray;}
 	.wrapper>header{height:80px;}
 	.wrapper>nav{height:50px;}
 	.wrapper>main{ height :calc(100vh - 80px - 50px - 80px);}
@@ -27,21 +27,24 @@
 	}
 	.wrapper>main table{
 		border:1px solid;
-		border-collapse:collapse;
-		min-width:500px;
-		min-height:350px;
+		/* border-collapse:collapse; */
+		min-width:550px;
+/* 		min-height:350px; */
 		margin: 0 auto;
 	}
 	.wrapper>main table th,
 	.wrapper>main table td{
-		min-width:80px !important;
-		min-height:25px !important;
+		min-width:80px ;
+		height:25px ;
 		border:1px solid;
 		text-align:center;
+		padding : 0 10px;
 	}
-	.wrapper>main table th{
-		background-color:lightgray;
+	.wrapper>main table input,
+	.wrapper>main table select{
+		min-width: 200px;
 	}
+
 	.wrapper>footer{height:80px;}
 	
 </style>
@@ -86,11 +89,12 @@
 						<td><%=teacherDto.getClass_name() %></td>
 						<%
 							int price = Integer.parseInt(teacherDto.getClass_price());	
-							DecimalFormat formatter = new DecimalFormat("###,###");
+							DecimalFormat formatter = new DecimalFormat("#,###");
 							
-							String formaprice = formatter.format(price);
+							/* String formaprice = formatter.format(price); */
 						%>
-						<td><%="\\"+formaprice %></td>
+						<%-- <td><%="\\"+formaprice %></td> --%>
+						<td><%="\\"+formatter.format(price) %></td>
 						
 						<%
 							String date = teacherDto.getTeacher_regist_date();

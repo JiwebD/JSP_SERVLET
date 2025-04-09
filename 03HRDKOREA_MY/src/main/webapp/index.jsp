@@ -13,7 +13,7 @@
 	body{padding:0;margin : 0;}
 	ul{list-style:none;margin:0;padding:0;}
 	a{text-decoration:none; color:black;}
-	.wrapper{}
+	.wrapper{background-color: lightgray;}
 	.wrapper>header{height:80px;}
 	.wrapper>nav{height:50px;}
 	.wrapper>main{ height :calc(100vh - 80px - 50px - 80px);}
@@ -29,6 +29,8 @@
 		min-width:500px;
 		min-height:350px;
 		margin: 0 auto;
+		
+		
 	}
 	.wrapper>main table th,
 	.wrapper>main table td{
@@ -60,11 +62,7 @@
 		
 		<main>
 			<h2>과정평가형 자격 CBQ</h2><br />
-			<h3>무언가의 내용이 들어있음.</h3><br />
-			<h3>내용</h3><br />
-			<h3>내용</h3><br />
-			<h3>내용</h3><br />
-			<h3>내용</h3>
+
 		</main>
 		
 		<footer>

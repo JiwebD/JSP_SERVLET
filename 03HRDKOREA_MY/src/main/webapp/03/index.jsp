@@ -13,7 +13,7 @@
 	body{padding:0;margin : 0;}
 	ul{list-style:none;margin:0;padding:0;}
 	a{text-decoration:none; color:black;}
-	.wrapper{}
+	.wrapper{background-color: lightgray;}
 	.wrapper>header{height:80px;}
 	.wrapper>nav{height:50px;}
 	.wrapper>main{ height :calc(100vh - 80px - 50px - 80px);}
@@ -25,26 +25,41 @@
 	}
 	.wrapper>main table{
 		border:1px solid;
-		border-collapse:collapse;
-		min-width:500px;
-		min-height:350px;
+		/* border-collapse:collapse; */
+		min-width:550px;
+/* 		min-height:350px; */
 		margin: 0 auto;
 	}
 	.wrapper>main table th,
 	.wrapper>main table td{
-		min-width:80px !important;
-		min-height:25px !important;
+		min-width:80px ;
+		height:25px ;
 		border:1px solid;
 		text-align:center;
+		padding : 0 10px;
 	}
-	.wrapper>main table th{
-		background-color:lightgray;
+	.wrapper>main table input,
+	.wrapper>main table select{
+		min-width: 200px;
 	}
+
 	.wrapper>footer{height:80px;}
-	
 </style>
 <body>
 
+<!-- 
+		select c.regist_month, m.c_no, m.c_name, t.class_name, c.class_area, c.tuition, m.grade
+		from TBL_MEMBER_202201 m
+		join TBL_CLASS_202201 c
+		on m.c_no=c.c_no
+    	join TBL_TEACHER_202201 t
+	    on c.teacher_code = t.teacher_code;
+ -->
+	<%@page import="java.text.*,java.time.*,java.time.format.*,Utils.*,java.util.*" %>
+	<%
+	//모든 회원정보 가져오기
+			List<ClassJoinMemberTeacher> join_list = DBUtils.getInstance().selectAllClassMember();
+	%>
 	<div class="wrapper">
 		<header>
 		<!--  -->
@@ -60,6 +75,48 @@
 		
 		<main>
 			<h2>회원정보조회</h2><br />
+			
+			<table>
+				<tr>
+					<th>수강월</th>
+					<th>회원번호</th>
+					<th>회원명</th>
+					<th>강의명</th>
+					<th>강의장소</th>
+					<th>수강료</th>
+					<th>등급</th>
+				</tr>
+				<%
+				for(ClassJoinMemberTeacher dto : join_list)
+				{
+				%>
+				<tr>
+					<%
+						String date = dto.getRegist_month();
+						DateTimeFormatter in = DateTimeFormatter.ofPattern("yyyyMMdd");
+						LocalDate indate = LocalDate.parse(date+"01",in);
+						
+						DateTimeFormatter outformat = DateTimeFormatter.ofPattern("yyyy년 MM월");
+						String outdate = indate.format(outformat);
+						
+					%>
+					<td><%=outdate %></td>
+					<td><%=dto.getC_no() %></td>
+					<td><%=dto.getC_name() %></td>
+					<td><%=dto.getClass_name() %></td>
+					<td><%=dto.getClass_area() %></td>
+					
+					<%
+						int tuition = Integer.parseInt(dto.getTuition());
+						DecimalFormat formetter = new DecimalFormat("###,###");
+					%>
+					<td><%="\\"+formetter.format(tuition) %></td>
+					<td><%=dto.getGrade() %></td>
+				</tr>
+				<%
+				}
+				%>
+			</table>
 
 		</main>
 		
