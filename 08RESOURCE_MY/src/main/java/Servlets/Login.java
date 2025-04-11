@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import Utils.MysqlDbUtils;
 import Utils.UserDto;
 
-//@WebServlet("/login.do")
+@WebServlet("/login.do")
 public class Login extends HttpServlet{
 	
 	private MysqlDbUtils dbutils;	
@@ -38,21 +38,20 @@ public class Login extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("POST /login.do");
 		//파라미터
-		String userid = req.getParameter("userid");
+		String username = req.getParameter("username");
 		String password = req.getParameter("password");
-		System.out.println("POST /login.do username : " + userid);
 		
 		//유효성
 		
 		//작업(DB /)
 		boolean isAuth = false;
 		try {
-			UserDto dbUser = dbutils.selectOne(userid);
+			UserDto dbUser = dbutils.selectOne(username);
 			
 			if(dbUser!=null && dbUser.getPassword().equals(password)) {
 				//세션 작업
 				HttpSession session = req.getSession();
-				session.setAttribute("userid", userid);
+				session.setAttribute("username", username);
 				session.setAttribute("role", dbUser.getRole());
 				isAuth=true;
 			}
@@ -61,26 +60,19 @@ public class Login extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-//		//뷰
-//		if(isAuth) {
-//			resp.sendRedirect(req.getContextPath()+"/main.do");
-//			return ;
-//		}
-//		else {
-//			req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req,  resp);
-//			return ;
-//		}
-		
 		//뷰
-		if(!isAuth) {
+		if(isAuth) {
+			resp.sendRedirect(req.getContextPath()+"/main.do");
+			return ;
+		}
+		else {
 			req.getRequestDispatcher("/WEB-INF/user/login.jsp").forward(req,  resp);
 			return ;
 		}
-
 	}
 	
 
-	//POST - 	/join.do - 회원가입처리(username,password 받아 DBUtils를 이용한 DB INSERT)
+	//POST - 	/login.do - 회원가입처리(username,password 받아 DBUtils를 이용한 DB INSERT)
 	//테이블 : tbl_user
 	//성공시 : /main.do 로 리다이렉트
 	//실패시 : /login.do로 포워딩

@@ -93,6 +93,14 @@
   	
   </filter-mapping> 
  -->
+    <filter>
+  	<filter-name>LoginRedirectFilter</filter-name>
+  	<filter-class>Fillter.LoginRedirectFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginRedirectFilter</filter-name>
+  	<url-pattern>/login.do</url-pattern>
+  </filter-mapping>
   
   <filter>
   	<filter-name>UTF8_EncodingFilter</filter-name>
@@ -113,6 +121,8 @@
   	<url-pattern>/manager_main</url-pattern>
   	<url-pattern>/user_main</url-pattern>
   </filter-mapping>
+  
+
   
 
 </web-app>

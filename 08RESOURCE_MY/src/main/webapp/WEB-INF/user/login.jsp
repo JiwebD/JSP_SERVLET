@@ -10,11 +10,10 @@
 
 	<h1>LOGIN PAGE</h1>
 	<form action="${pageContext.request.contextPath}/login.do" method="post">
-		<input name="userid" /><br/>
+		<input name="username" /><br/>
 		<input name="password" /><br/>
 		<button>로그인</button>
 	</form>
-	<div>${ param.msg }</div>
 
 </body>
 </html>
