@@ -14,7 +14,7 @@
 	PW : <%=request.getAttribute("PW1") %><br>
 	
 	<div>SESSION 속성확인</div>
-	ID : <%=request.getAttribute("ID2") %><br>
-	PW : <%=request.getAttribute("PW2") %><br>
+	ID : <%=session.getAttribute("ID2") %><br>
+	PW : <%=session.getAttribute("PW2") %><br>
 </body>
 </html>
