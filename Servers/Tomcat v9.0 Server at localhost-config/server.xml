@@ -162,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="03HRDKOREA_MY" path="/03HRDKOREA_MY" reloadable="true" source="org.eclipse.jst.jee.server:03HRDKOREA_MY"/><Context docBase="02HRDKOREA_MY" path="/02HRDKOREA_MY" reloadable="true" source="org.eclipse.jst.jee.server:02HRDKOREA_MY"/><Context docBase="04HRDKOREA_MY" path="/04HRDKOREA_MY" reloadable="true" source="org.eclipse.jst.jee.server:04HRDKOREA_MY"/><Context docBase="03HRDKOREA" path="/03HRDKOREA" reloadable="true" source="org.eclipse.jst.jee.server:03HRDKOREA"/><Context docBase="05EX_MY" path="/05EX" reloadable="true" source="org.eclipse.jst.jee.server:05EX_MY"/><Context docBase="04SERVLET_INIT" path="/04SERVLET_INIT" reloadable="true" source="org.eclipse.jst.jee.server:04SERVLET_INIT"/><Context docBase="06FILTER_MY" path="/06FILTER_MY" reloadable="true" source="org.eclipse.jst.jee.server:06FILTER_MY"/><Context docBase="07LISTENER_MY" path="/07LISTENER_MY" reloadable="true" source="org.eclipse.jst.jee.server:07LISTENER_MY"/><Context docBase="08RESOURCE_MY" path="/08RESOURCE_MY" reloadable="true" source="org.eclipse.jst.jee.server:08RESOURCE_MY"/><Context docBase="09MVC_INIT" path="/09MVC_INIT" reloadable="true" source="org.eclipse.jst.jee.server:09MVC_INIT"/></Host>
+      <Context docBase="09MVC_INIT" path="/09MVC_INIT" reloadable="true" source="org.eclipse.jst.jee.server:09MVC_INIT"/><Context docBase="10MVC_USER_MY" path="/10MVC_USER_MY" reloadable="true" source="org.eclipse.jst.jee.server:10MVC_USER_MY"/></Host>
     </Engine>
   </Service>
 </Server>
