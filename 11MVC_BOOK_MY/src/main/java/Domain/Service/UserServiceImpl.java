@@ -60,7 +60,7 @@ public class UserServiceImpl {
 			UserDto userDb = userDao.select(userDto.getUsername()); //sql 질의 다수
 			
 			if(userDb==null) {
-				response.put("islogin", false);
+				response.put("isLogin", false);
 				response.put("message", "동일한 계정이 존재하지 않습니다.");
 			} 
 			else {

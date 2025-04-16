@@ -8,7 +8,6 @@
 	<!-- link -->
 	<%@include file="/resources/layouts/link.jsp" %>
 </head>
-
 <body>
 
 	<div class="wrapper">
@@ -21,11 +20,12 @@
 		</header>
 		
 		<main class="layout">
-			<h1>USER LOGIN</h1>
-			<form action="${pageContext.request.contextPath}/user/login" method="post">
+			<h1>USER JOIN</h1>
+			<form action="${pageContext.request.contextPath}/user/create"
+				method="post">
 				USERNAME : <input name="username" /><br /> PASSWORD : <input
 					name="password" /><br />
-				<button>로그인</button>
+				<button>회원가입</button>
 			</form>
 			<div>${username_err}</div>
 		</main>
