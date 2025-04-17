@@ -10,7 +10,6 @@ import Controller.SubController;
 import Domain.Dto.BookDto;
 import Domain.Dto.Criteria;
 import Domain.Dto.PageDto;
-import Domain.Dto.UserDto;
 import Domain.Service.BookServiceImpl;
 
 public class BookListController implements SubController {
@@ -81,7 +80,7 @@ public class BookListController implements SubController {
 
 	}
 
-	private boolean isValid(UserDto userDto) {
+	private boolean isValid(BookDto bookDto) {
 
 		return true;
 	}
