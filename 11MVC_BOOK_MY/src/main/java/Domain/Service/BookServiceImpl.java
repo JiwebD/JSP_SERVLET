@@ -85,7 +85,7 @@ public class BookServiceImpl {
 			List<BookDto> list = bookDao.selectAll(offset, amount, type, keyword);
 			
 			// pageDto
-			long totalCount = bookDao.count();
+			long totalCount = bookDao.count(criteria);
 			PageDto pageDto = new PageDto(totalCount, criteria);
 			System.out.println("Service pageDto : " + pageDto);
 			if (list.size() > 0) {
