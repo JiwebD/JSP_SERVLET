@@ -24,13 +24,22 @@ public class BookDeleteController implements SubController {
 		System.out.println("[SC] BookDeleteController execute..");
 
 		try {
-			// 요청받은 페이지의 methode를 가져와서 문자형 uri 변수에 저장
-			String uri = req.getMethod();
-			// Methode가 GET이면 해당하는 페이지 매핑, 포워딩
-			if (uri.equals("GET")) {
-				req.getRequestDispatcher("/WEB-INF/view/book/delete.jsp").forward(req, resp);
-				return;
+
+			//파라미터
+			String bookCode = req.getParameter("bookCode");
+			String pageno = req.getParameter("pageno") != null ? req.getParameter("pageno") : "1";
+			
+			//유효성
+			if (!isValid(bookCode)) {
+				resp.sendRedirect(req.getContextPath()+"/book/read?bookCode=" + bookCode);
 			}
+			
+			//서비스
+			boolean isDelete = bookService.removeBook(bookCode);
+			
+			//뷰
+			resp.sendRedirect(req.getContextPath() + "/book/list?pageno=" + pageno);
+			
 		} catch (Exception e) {
 			exceptionHandler(e);
 			try {
@@ -42,7 +51,7 @@ public class BookDeleteController implements SubController {
 
 	}
 
-	private boolean isValid(UserDto userDto) {
+	private boolean isValid(String bookCode) {
 
 		return true;
 	}

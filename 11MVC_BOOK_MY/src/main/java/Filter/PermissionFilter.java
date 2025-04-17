@@ -59,10 +59,11 @@ public class PermissionFilter implements Filter {
 		
 		//book
 		pageGradeMap.put(projectPath + "/book/list", Role.ROLE_ANONYMOUS);
-		pageGradeMap.put(projectPath + "/book/create",Role.ROLE_ANONYMOUS);
 		pageGradeMap.put(projectPath + "/book/read", Role.ROLE_ANONYMOUS);
-		pageGradeMap.put(projectPath + "/book/update", Role.ROLE_ANONYMOUS);
-		pageGradeMap.put(projectPath + "/book/delete", Role.ROLE_ANONYMOUS);
+		
+		pageGradeMap.put(projectPath + "/book/create", Role.ROLE_MANAGER);
+		pageGradeMap.put(projectPath + "/book/update", Role.ROLE_MANAGER);
+		pageGradeMap.put(projectPath + "/book/delete", Role.ROLE_MANAGER);
 	}
 
 	// 클라이언트가 요청을 보낼 때마다 매번 실행되는 필터 핵심 로직

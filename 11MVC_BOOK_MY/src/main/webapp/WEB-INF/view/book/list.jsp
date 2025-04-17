@@ -10,6 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%
+	PageDto pageDto = request.getAttribute("pageDto") != null ? (PageDto) request.getAttribute("pageDto") : null;
+	String type = null;
+	String keyword = null;
+	if (pageDto != null) {
+		type = pageDto.getCriteria().getType();
+		keyword = pageDto.getCriteria().getKeyword();
+	}
+	%>
 
 	<div class="wrapper">
 		<header>
@@ -26,7 +35,8 @@
 			<!-- 게시물 표시 -->
 			<section>
 				<div>
-					PAGE : <span>1</span> / <span>100</span> (현재페이지 / 전체페이지)
+					TOTAL : <%=pageDto.getTotalCount()%>( 건) <br />
+					PAGE : <span><%=pageDto.getCriteria().getPageno()%></span> / <span><%=pageDto.getTotalpage()%></span> (현재페이지 / 전체페이지)
 				</div>
 				<table class="table">
 					<thead>
@@ -40,28 +50,28 @@
 
 					<tbody>
 						<!-- 목록 -->
-						<%@page import="java.util.*,Domain.Dto.*" %>
+						<%@page import="java.util.*,Domain.Dto.*"%>
 						<%
-							List<BookDto> list = request.getAttribute("list")!=null? (List<BookDto>)request.getAttribute("list"):null;
-							if(list==null){
-								out.println("<td colspan=4>조회할 데이터가 없습니다.</td>");
-							}
-							else
-							{
-								for(BookDto dto : list)
-								{
+						List<BookDto> list = request.getAttribute("list") != null ? (List<BookDto>) request.getAttribute("list") : null;
+						if (list == null) {
+							out.println("<td colspan=4>조회할 데이터가 없습니다.</td>");
+						} else {
+							for (BookDto dto : list) {
 						%>
-														
-								<tr>
-									<th><%=dto.getBookCode()%></th>
-									<th><%=dto.getBookName() %></th>
-									<th><%=dto.getPublisher() %></th>
-									<th><%=dto.getIsbn() %></th>
-								</tr>
-							
-						<%	
-								}
-							}
+
+						<tr>
+							<td><%=dto.getBookCode()%></td>
+							<td><a
+								href="${pageContext.request.contextPath}/book/read?bookCode=<%=dto.getBookCode()%>&pageno=<%=pageDto.getCriteria().getPageno()%>">
+									<%=dto.getBookName()%>
+							</a></td>
+							<td><%=dto.getPublisher()%></td>
+							<td><%=dto.getIsbn()%></td>
+						</tr>
+
+						<%
+						}
+						}
 						%>
 
 					</tbody>
@@ -71,59 +81,64 @@
 							<td colspan=3>
 								<nav aria-label="Page navigation example">
 									<ul class="pagination">
-									
+
+
 										<%
-										PageDto pageDto = request.getAttribute("pageDto")!=null?(PageDto)request.getAttribute("pageDto"):null;
+										if (pageDto != null && pageDto.isPrev()) {
 										%>
-										
+										<!-- 이전버튼 -->
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getStartPage() - pageDto.getPagePerBlock()%>"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										</a></li>
 										<%
-										if(pageDto!=null&&pageDto.isPrev())
-										{
-										%>
-											<!-- 이전버튼 -->
-											<li class="page-item">
-												<a class="page-link" href="#"aria-label="Previous"> 
-													<span aria-hidden="true">&laquo;</span>
-												</a>
-											</li>										
-										<%		
 										}
 										%>
-										
+
 										<%
-										if(pageDto!=null)
-										{
+										System.out.println("pageDto : " + pageDto);
+										if (pageDto != null) {
 											int startNo = pageDto.getStartPage();
 											int endNo = pageDto.getEndPage();
-											for(int i=startNo;i<=endNo;i++)
-											{
+											for (int i = startNo; i <= endNo; i++) {
+												if (type == null || type.isEmpty()) {
 										%>
-										
-											<li class="page-item"><a class="page-link" href="#"><%=i %></a></li>
-									
+										<!-- 페이지 블록 링크 => 클릭시 해당페이지로이동 -->
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=i %>"><%=i%></a></li>
+
 										<%
-											}
+										} else {
+										%>
+										<!-- 페이지 블록 링크 => 클릭시 해당페이지로이동 -->
+										<li class="page-item"><a class="page-link"
+											href="${pageContext.request.contextPath}/book/list?pageno=<%=i %>&type=<%=type%>&keyword=<%=keyword%>"><%=i%></a></li>
+										<%
+										}
+										}
 										}
 										%>
-									
+
 										<%
-										if(pageDto!=null&&pageDto.isNext())
-										{
+										if (pageDto != null && pageDto.isNext()) {
 										%>
-											<!-- 이후버튼 -->
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-											</a></li>
-										
-										<%		
+										<!-- 이후버튼 -->
+										<li class="page-item">
+										<a class="page-link"
+										href="${pageContext.request.contextPath}/book/list?pageno=<%=pageDto.getEndPage()+1 %>"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+
+										<%
 										}
 										%>
-										
+
 									</ul>
 								</nav>
 							</td>
 							<td>
-								<!-- 글쓰기 --> <a href="javascript:void(0)"
+								<!-- 글쓰기 --> <a
+								href="${pageContext.request.contextPath }/book/create"
 								class="btn btn-success">도서등록</a> <!-- 처음으로 --> <a
 								href="javascript:void(0)" class="btn btn-success">처음으로</a>
 							</td>

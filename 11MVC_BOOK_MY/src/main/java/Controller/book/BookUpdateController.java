@@ -1,21 +1,21 @@
 package Controller.book;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
-import Domain.Dto.UserDto;
+import Domain.Dto.BookDto;
 import Domain.Service.BookServiceImpl;
 
 public class BookUpdateController implements SubController {
-
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
-
 	private BookServiceImpl bookService;
 
 	public BookUpdateController() throws Exception {
-		bookService = BookServiceImpl.getInstance();
+		this.bookService = BookServiceImpl.getInstance();
 	}
 
 	@Override
@@ -25,12 +25,28 @@ public class BookUpdateController implements SubController {
 		System.out.println("[SC] BookUpdateController execute..");
 
 		try {
+			// 파라미터
+			String bookCode = req.getParameter("bookCode");
+			String bookName = req.getParameter("bookName");
+			String publisher = req.getParameter("publisher");
+			String inbn = req.getParameter("isbn");
 
-			String uri = req.getMethod();
-			if (uri.equals("GET")) {
-				req.getRequestDispatcher("/WEB-INF/view/book/update.jsp").forward(req, resp);
-				return;
+			String pageno = req.getParameter("pageno") != null ? req.getParameter("pageno") : "1";
+			
+			BookDto bookDto = new BookDto(bookCode,bookName,publisher,inbn);
+
+			// 유효성
+			if (!isValid(bookDto)) {
+				resp.sendRedirect(req.getContextPath()+"/book/read?bookCode=" + bookCode);
 			}
+
+			// 서비스
+			boolean serviceResponse = bookService.modifyBook(bookDto);
+
+			// 뷰
+
+			resp.sendRedirect(req.getContextPath() + "/book/list?pageno=" + pageno);
+
 
 		} catch (Exception e) {
 			exceptionHandler(e);
@@ -38,12 +54,11 @@ public class BookUpdateController implements SubController {
 				req.getRequestDispatcher("/WEB-INF/view/book/error.jsp").forward(req, resp);
 			} catch (Exception e2) {
 			}
-
 		}
 
 	}
 
-	private boolean isValid(UserDto userDto) {
+	private boolean isValid(BookDto bookDto) {
 
 		return true;
 	}

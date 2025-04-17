@@ -40,14 +40,14 @@ public class BookListController implements SubController {
 			//파라미터
 			String pageno = req.getParameter("pageno");
 			String amount = req.getParameter("amount");
-			String type = req.getParameter("typer");
+			String type = req.getParameter("type");
 			String keyword = req.getParameter("keyword");
 			
 			Criteria criteria = null;
 			if(pageno==null) {
 				criteria = new Criteria();	//최초 접속했을때 - pageno=1, amount=10, type=null,keyword=null
 			}else {
-				
+				criteria = new Criteria(pageno,10,type,keyword);
 			}
 			
 			//입력값검증
@@ -63,14 +63,14 @@ public class BookListController implements SubController {
 				List<BookDto> list = (List<BookDto>) serviceResponse.get("list");
 				req.setAttribute("list", list);
 				req.setAttribute("pageDto", pageDto);
-			}else {
-				;
 			}
+			
 			req.getRequestDispatcher("/WEB-INF/view/book/list.jsp").forward(req, resp);
 			
 			
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			exceptionHandler(e);
 			try {
 				req.getRequestDispatcher("/WEB-INF/view/book/error.jsp").forward(req, resp);
