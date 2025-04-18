@@ -281,7 +281,7 @@ public class BookDaoImpl implements BookDao {
 			connectionItem = connectionPool.getConnection();
 			Connection conn = connectionItem.getConn();
 			
-			pstmt = conn.prepareStatement("select * from tbl_book where "+type+" like '%"+keyword+"% ' order by bookCode desc limit ?,?");
+			pstmt = conn.prepareStatement("select * from tbl_book where "+type+" like '%"+keyword+"%' order by bookCode desc limit ?,?");
 			pstmt.setInt(1,  offset);
 			pstmt.setInt(2,  amount);
 			
