@@ -6,6 +6,10 @@
 <!-- link -->
 <%@include file="/resources/layouts/link.jsp"%>
 
+<!--  -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/book/read.css" />
+<script src="${pageContext.request.contextPath}/resources/js/book/read.js" defer></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -43,6 +47,37 @@
 					<a href="${pageContext.request.contextPath }/book/delete?bookCode=${bookDto.bookCode}&pageno=${pageno}">도서삭제</a>
 				</div>
 			</form>
+			
+			
+			<!--  -->
+			<div class="reply-block">
+				<div class="reply-header">
+					<div>
+						댓글수 : <span>00</span>
+					</div>
+					<hr />
+					<div>
+						<textarea name="" id="" cols="30" rows="5"></textarea>
+						<a class="reply-add-btn" href="javascript:void(0)">입력</a>
+					</div>
+				</div>
+				<div class="reply-body">
+					<div class="items">
+						<div class="left">
+							<div>profileImage</div>
+							<div>username</div>
+						</div>
+						<div class="right">
+							<div class="date">2025-01-01</div>
+							<div class="content">
+								<textarea name="" id="" cols="30" rows="2"></textarea>
+							</div>
+							<div class="button-group"></div>
+						</div>					
+					</div>
+				</div>
+				
+			</div>
 		</main>
 
 
